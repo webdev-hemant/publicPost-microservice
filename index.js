@@ -1,12 +1,14 @@
 require("dotenv").config();
 const express = require("express");
 const sequelize = require("./src/config/db");
-const authRoutes = require("./src/routes/authRoutes");
+const publicPosts = require("./src/routes/publicPosts");
 const { SERVER_PORT } = require("./src/config/allEnv");
 
 const app = express();
 app.use(express.json());
-app.use("/api/auth", authRoutes);
+
+// Public posts
+app.use("/api/public-posts", publicPosts);
 
 const startServer = async () => {
   try {
