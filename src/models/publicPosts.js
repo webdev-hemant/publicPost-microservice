@@ -22,27 +22,19 @@ const PublicPost = sequelize.define(
       allowNull: false,
     },
     media: {
-      type: DataTypes.JSONB, // Store images and videos as JSON
+      type: DataTypes.JSONB,
       allowNull: true,
     },
     timestamp: {
       type: DataTypes.DATE,
       defaultValue: sequelize.NOW,
     },
-    likes: {
-      type: DataTypes.INTEGER,
-      defaultValue: 0,
-    },
-    comments: {
-      type: DataTypes.JSONB, // Store comments as JSON
-      allowNull: true,
-    },
     tags: {
-      type: DataTypes.ARRAY(DataTypes.STRING), // Array of strings for tags
+      type: DataTypes.ARRAY(DataTypes.STRING),
       allowNull: true,
     },
     location: {
-      type: DataTypes.JSONB, // Store latitude and longitude
+      type: DataTypes.JSONB,
       allowNull: true,
     },
     visibility: {
