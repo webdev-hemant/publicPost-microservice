@@ -2,6 +2,8 @@ require("dotenv").config();
 const express = require("express");
 const sequelize = require("./src/config/db");
 const publicPosts = require("./src/routes/publicPosts");
+const likes = require("./src/routes/likes");
+const comments = require("./src/routes/comment");
 const { SERVER_PORT } = require("./src/config/allEnv");
 
 const app = express();
@@ -9,6 +11,8 @@ app.use(express.json());
 
 // Public posts
 app.use("/api/public-posts", publicPosts);
+app.use("/api/likes", likes);
+app.use("/api/comments", comments);
 
 const startServer = async () => {
   try {

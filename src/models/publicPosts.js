@@ -5,36 +5,55 @@ const PublicPost = sequelize.define(
   "PublicPost",
   {
     id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
     },
     user_id: {
-      type: DataTypes.INTEGER,
-      defaultValue: 999,
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    username: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
     content: {
       type: DataTypes.TEXT,
       allowNull: false,
     },
-    img_url: {
-      type: DataTypes.STRING(255),
+    media: {
+      type: DataTypes.JSONB, // Store images and videos as JSON
+      allowNull: true,
     },
-    created_at: {
+    timestamp: {
       type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW,
-      allowNull: false,
+      defaultValue: sequelize.NOW,
     },
-    updated_at: {
-      type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW,
+    likes: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0,
+    },
+    comments: {
+      type: DataTypes.JSONB, // Store comments as JSON
+      allowNull: true,
+    },
+    tags: {
+      type: DataTypes.ARRAY(DataTypes.STRING), // Array of strings for tags
+      allowNull: true,
+    },
+    location: {
+      type: DataTypes.JSONB, // Store latitude and longitude
+      allowNull: true,
+    },
+    visibility: {
+      type: DataTypes.ENUM("public", "friends", "private"),
       allowNull: false,
     },
   },
   {
-    tableName: "public_posts", // Specify the table name
-    timestamps: false, // Sequelize will not automatically manage createdAt and updatedAt fields
-    underscored: true, // Use snake_case for column names in the database
+    tableName: "public_posts",
+    timestamps: false,
+    underscored: true,
   }
 );
 
