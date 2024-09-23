@@ -32,7 +32,7 @@ exports.createPost = async (req, res) => {
 exports.getAllPosts = async (req, res) => {
   try {
     const posts = await PublicPost.findAll();
-    res.status(200).json(posts);
+    res.status(200).json({ total: posts.length, posts });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

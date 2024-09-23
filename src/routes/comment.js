@@ -23,7 +23,7 @@ router.get("/:postId", async (req, res) => {
     const comments = await Comment.findAll({
       where: { post_id: req.params.postId },
     });
-    res.status(200).json(comments);
+    res.status(200).json({ total: comments.length, comments });
   } catch (error) {
     res.status(500).json({ error: "Error fetching comments" });
   }
